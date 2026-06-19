@@ -1,0 +1,67 @@
+@import 'tailwindcss';
+@import '../../vendor/livewire/flux/dist/flux.css';
+
+/* 1. Fixed Glob Pattern: Recursively scans all subfolders in resources/views */
+@source '../views/**/*.blade.php'; 
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
+@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-zinc-50: #fafafa;
+    --color-zinc-100: #f5f5f5;
+    --color-zinc-200: #e5e5e5;
+    --color-zinc-300: #d4d4d4;
+    --color-zinc-400: #a3a3a3;
+    --color-zinc-500: #737373;
+    --color-zinc-600: #525252;
+    --color-zinc-700: #404040;
+    --color-zinc-800: #262626;
+    --color-zinc-900: #171717;
+    --color-zinc-950: #0a0a0a;
+
+    /* Fixed: Use hex values directly instead of uninitialized var() references */
+    --color-accent: #262626; 
+    --color-accent-content: #262626;
+    --color-accent-foreground: #ffffff;
+}
+
+@layer theme {
+    .dark {
+        --color-accent: #ffffff;
+        --color-accent-content: #ffffff;
+        --color-accent-foreground: #262626;
+    }
+}
+
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-zinc-200, currentColor); /* Changed to use your defined zinc palette */
+    }
+}
+
+/* 2. Moved component styling safely into @layer components to allow clean @apply compilation */
+@layer components {
+    [data-flux-field]:not(ui-radio, ui-checkbox) {
+        @apply grid gap-2;
+    }
+
+    [data-flux-label] {
+        @apply !mb-0 !leading-tight;
+    }
+
+    /* Fixed focus utilities for Tailwind v4 structure */
+    input:focus[data-flux-control],
+    textarea:focus[data-flux-control],
+    select:focus[data-flux-control] {
+        @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+    }
+}

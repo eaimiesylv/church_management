@@ -17,10 +17,12 @@
     <div class="w-[80%] mx-auto px-2.5 py-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
             @if (file_exists(public_path('logo.jpg')))
-            
                 <a href="{{ url('/') }}" class="block"><img src="{{ asset('logo.jpg') }}" alt="{{ config('app.name') }} logo" class="h-10 w-auto"></a>
             @endif
-            <a href="{{ url('/') }}" class="font-bold text-2xl text-blue-900">{{ config('app.name', 'GOSPEL LIBERATION') }}</a>
+            <div class="flex flex-col leading-none">
+                <a href="{{ url('/') }}" class="font-bold text-2xl text-blue-900">{{ config('app.name', 'GOSPEL LIBERATION') }}</a>
+                <span class="text-xs text-slate-500">DIVINE APOSTOLIC ASSEMBLY INTERNATIONAL</span>
+            </div>
         </div>
         <div class="hidden md:flex gap-8">
             <a href="#about" class="hover:text-blue-700">About</a>
@@ -39,7 +41,6 @@
 </nav>
 
 <!-- Hero -->
-<!-- Hero -->
 <section class="relative min-h-screen flex items-center justify-center bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=2000');">
     <div class="absolute inset-0 bg-black/60"></div>
     <div class="relative z-10 text-center px-2.5 w-[80%] mx-auto">
@@ -54,7 +55,7 @@
 </section>
 
 <!-- Main layout: 3/5 content + 2/5 sidebar -->
-<div class="w-[80%] mx-auto px-2.5 py-16 flex flex-col lg:flex-row">
+<div class="w-[80%] mx-auto px-2.5 py-16 flex flex-col lg:flex-row gap-10">
 
     <!-- ===== MAIN CONTENT 3/5 ===== -->
     <main class="w-full lg:w-3/5 space-y-24">
@@ -97,8 +98,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Events removed from main layout (moved to sidebar) -->
 
         <!-- Testimonies -->
         <section id="testimonies" class="py-4">
@@ -177,7 +176,7 @@
                     <p class="mt-2 text-slate-600">Reflections on loving our neighbour.</p>
                 </a>
                 <a href="/devotions/3" class="block bg-white rounded-3xl shadow p-6 hover:shadow-2xl transition">
-                    <h3 class="text-xl font-bold">Prayer & Persistence</h3>
+                    <h3 class="text-xl font-bold">Prayer &amp; Persistence</h3>
                     <p class="mt-2 text-slate-600">Encouragement to build a strong prayer life.</p>
                 </a>
             </div>
@@ -200,59 +199,73 @@
             </div>
         </section>
 
-        <!-- Location — 2 column: description left, map right with carousel -->
+        <!-- Location -->
         <section id="location" class="py-4">
             <div class="text-center mb-8">
                 <h2 class="text-4xl font-bold">Visit Us</h2>
                 <p class="mt-3 text-slate-600">Find a campus near you.</p>
             </div>
 
-            <div class="bg-white rounded-3xl shadow overflow-hidden">
+            <!-- Navigation bar ABOVE the card -->
+            <div class="flex items-center justify-between mb-5">
+                <div class="flex items-center gap-3">
+                    <span id="locCounter" class="text-sm font-bold text-blue-900 bg-blue-50 border border-blue-200 px-4 py-1.5 rounded-full">1 / 4</span>
+                    <div id="locDots" class="flex gap-2 items-center"></div>
+                </div>
+                <div class="flex gap-3">
+                    <button id="locPrev" type="button"
+                        class="bg-white border-2 border-slate-300 hover:border-blue-600 hover:bg-blue-50 hover:text-blue-700 text-slate-700 font-semibold px-6 py-3 rounded-xl transition-all duration-200 text-sm shadow">
+                        &#8592; Prev
+                    </button>
+                    <button id="locNext" type="button"
+                        class="bg-blue-900 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 text-sm shadow">
+                        Next &#8594;
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card -->
+            <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-slate-100">
                 <div class="grid md:grid-cols-2">
 
                     <!-- Left: Location description -->
-                    <div class="p-8 flex flex-col justify-between">
+                    <div class="p-8 flex flex-col gap-5">
                         <div>
-                            <span class="text-xs font-semibold text-blue-700 uppercase tracking-widest" id="locBadge">Main Campus</span>
-                            <h3 id="locTitle" class="text-2xl font-bold mt-2 text-blue-900">123 Grace Avenue</h3>
-                            <p id="locAddress" class="mt-2 text-slate-500 text-sm">City Center, Abuja, Nigeria.</p>
-                            <p id="locDesc" class="mt-4 text-slate-600 leading-7">Our main campus is home to our Sunday services, midweek Bible study, and Friday prayer meetings. All are welcome — come as you are.</p>
+                            <span id="locBadge" class="inline-block text-xs font-bold text-white bg-blue-700 uppercase tracking-widest px-3 py-1 rounded-full">Main Campus</span>
+                            <h3 id="locTitle" class="text-2xl font-bold mt-3 text-blue-900">123 Grace Avenue</h3>
+                            <p id="locAddress" class="mt-1 text-slate-500 text-sm">City Center, Abuja, Nigeria.</p>
+                        </div>
 
-                            <div class="mt-6 space-y-2 text-sm">
-                                <div class="flex items-center gap-3">
-                                    <span class="w-2 h-2 rounded-full bg-blue-600 inline-block"></span>
-                                    <span><strong>Sunday:</strong> 9:00 AM</span>
-                                </div>
-                                <div class="flex items-center gap-3">
-                                    <span class="w-2 h-2 rounded-full bg-blue-600 inline-block"></span>
-                                    <span><strong>Wednesday:</strong> 6:00 PM</span>
-                                </div>
-                                <div class="flex items-center gap-3">
-                                    <span class="w-2 h-2 rounded-full bg-blue-600 inline-block"></span>
-                                    <span><strong>Friday:</strong> 6:00 PM</span>
-                                </div>
+                        <p id="locDesc" class="text-slate-600 leading-7 text-sm">Our main campus is home to our Sunday services, midweek Bible study, and Friday prayer meetings. All are welcome.</p>
+
+                        <div class="space-y-2 text-sm border-t border-slate-100 pt-4">
+                            <p class="font-semibold text-slate-700 mb-2">Service Times</p>
+                            <div class="flex items-center gap-3">
+                                <span class="w-2 h-2 rounded-full bg-blue-600 flex-shrink-0"></span>
+                                <span><strong>Sunday:</strong> 9:00 AM</span>
                             </div>
-
-                            <a id="locDirections" href="#" target="_blank"
-                               class="inline-block mt-6 bg-blue-900 text-white text-sm px-5 py-2.5 rounded-lg hover:bg-blue-800 transition">
-                                Get Directions →
-                            </a>
-
-                            <p class="mt-3 text-sm"><strong>Phone:</strong> <a href="tel:+2348000000000" class="text-blue-700">+234 800 000 0000</a></p>
+                            <div class="flex items-center gap-3">
+                                <span class="w-2 h-2 rounded-full bg-blue-600 flex-shrink-0"></span>
+                                <span><strong>Wednesday:</strong> 6:00 PM</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="w-2 h-2 rounded-full bg-blue-600 flex-shrink-0"></span>
+                                <span><strong>Friday:</strong> 6:00 PM</span>
+                            </div>
                         </div>
 
-                        <!-- Carousel controls + indicators -->
-                        <div class="mt-8 flex items-center gap-4">
-                            <button id="locPrev" class="w-9 h-9 flex items-center justify-center rounded-full bg-slate-100 hover:bg-blue-100 hover:text-blue-700 transition font-bold">‹</button>
-                            <div id="locDots" class="flex gap-2"></div>
-                            <button id="locNext" class="w-9 h-9 flex items-center justify-center rounded-full bg-slate-100 hover:bg-blue-100 hover:text-blue-700 transition font-bold">›</button>
-                            <span id="locCounter" class="text-xs text-slate-400 ml-auto">1 / 4</span>
+                        <div class="border-t border-slate-100 pt-4 text-sm">
+                            <p class="text-slate-600"><strong>Phone:</strong> <a href="tel:+2348000000000" class="text-blue-700 hover:underline">+234 800 000 0000</a></p>
                         </div>
+
+                        <a id="locDirections" href="https://maps.google.com/?q=9.0579,7.4914" target="_blank"
+                           class="inline-flex items-center justify-center gap-2 bg-blue-900 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition text-sm w-full">
+                            &#128205; Get Directions
+                        </a>
                     </div>
 
-                    <!-- Right: Embedded Google Map -->
-                    <div id="locMapContainer" class="relative h-80 md:h-auto min-h-64 bg-slate-100">
-                        <!-- iframe injected by JS -->
+                    <!-- Right: Map injected by JS -->
+                    <div id="locMapContainer" class="relative h-80 md:h-full min-h-72 bg-slate-100">
                     </div>
 
                 </div>
@@ -269,31 +282,30 @@
             <!-- Latest News -->
             <div class="bg-white rounded-3xl shadow p-6">
                 <h3 class="text-xl font-bold text-blue-900 mb-5">Latest News</h3>
-                <!-- 2-column grid layout for news -->
                 <div class="grid grid-cols-2 gap-4">
                     <a href="/details/101" class="block bg-slate-50 rounded-2xl p-4 hover:shadow-md transition group">
                         <time class="text-xs text-blue-700 font-semibold">Jun 10</time>
                         <h4 class="font-semibold text-sm mt-1 group-hover:text-blue-700 leading-snug">New Community Centre Launch</h4>
                         <p class="text-xs text-slate-500 mt-1">Opening our doors to the neighbourhood.</p>
-                        <span class="inline-block mt-2 text-xs text-blue-700 font-medium">Read →</span>
+                        <span class="inline-block mt-2 text-xs text-blue-700 font-medium">Read &rarr;</span>
                     </a>
                     <a href="/details/102" class="block bg-slate-50 rounded-2xl p-4 hover:shadow-md transition group">
                         <time class="text-xs text-blue-700 font-semibold">May 22</time>
                         <h4 class="font-semibold text-sm mt-1 group-hover:text-blue-700 leading-snug">Volunteer Appreciation Sunday</h4>
                         <p class="text-xs text-slate-500 mt-1">Celebrating those who serve faithfully.</p>
-                        <span class="inline-block mt-2 text-xs text-blue-700 font-medium">Read →</span>
+                        <span class="inline-block mt-2 text-xs text-blue-700 font-medium">Read &rarr;</span>
                     </a>
                     <a href="/details/103" class="block bg-slate-50 rounded-2xl p-4 hover:shadow-md transition group">
                         <time class="text-xs text-blue-700 font-semibold">Apr 18</time>
                         <h4 class="font-semibold text-sm mt-1 group-hover:text-blue-700 leading-snug">New Bible Study Group</h4>
-                        <p class="text-xs text-slate-500 mt-1">Starting Thursdays at 7 PM — all welcome.</p>
-                        <span class="inline-block mt-2 text-xs text-blue-700 font-medium">Read →</span>
+                        <p class="text-xs text-slate-500 mt-1">Starting Thursdays at 7 PM &mdash; all welcome.</p>
+                        <span class="inline-block mt-2 text-xs text-blue-700 font-medium">Read &rarr;</span>
                     </a>
                     <a href="/details/104" class="block bg-slate-50 rounded-2xl p-4 hover:shadow-md transition group">
                         <time class="text-xs text-blue-700 font-semibold">Mar 30</time>
                         <h4 class="font-semibold text-sm mt-1 group-hover:text-blue-700 leading-snug">Children's Ministry Grows</h4>
-                        <p class="text-xs text-slate-500 mt-1">New classes for ages 5–12 now running.</p>
-                        <span class="inline-block mt-2 text-xs text-blue-700 font-medium">Read →</span>
+                        <p class="text-xs text-slate-500 mt-1">New classes for ages 5&ndash;12 now running.</p>
+                        <span class="inline-block mt-2 text-xs text-blue-700 font-medium">Read &rarr;</span>
                     </a>
                 </div>
             </div>
@@ -301,14 +313,13 @@
             <!-- Upcoming Events in Sidebar -->
             <div class="bg-white rounded-3xl shadow p-6">
                 <h3 class="text-xl font-bold text-blue-900 mb-5">Upcoming Events</h3>
-                <!-- 2-column grid layout for events -->
                 <div class="grid grid-cols-2 gap-4">
                     <a href="/details/1" class="block bg-slate-50 rounded-2xl overflow-hidden hover:shadow-md transition group">
                         <img src="https://images.unsplash.com/photo-1519491050282-cf00c82424b4?w=800" class="w-full h-36 object-cover" alt="Youth Conference">
                         <div class="p-3">
                             <time class="text-xs text-blue-700 font-semibold">AUG 15</time>
                             <h4 class="font-semibold text-sm mt-0.5 group-hover:text-blue-700 leading-snug">Youth Conference</h4>
-                            <span class="inline-block mt-1 text-xs text-blue-700 font-medium">Details →</span>
+                            <span class="inline-block mt-1 text-xs text-blue-700 font-medium">Details &rarr;</span>
                         </div>
                     </a>
                     <a href="/details/2" class="block bg-slate-50 rounded-2xl overflow-hidden hover:shadow-md transition group">
@@ -316,7 +327,7 @@
                         <div class="p-3">
                             <time class="text-xs text-blue-700 font-semibold">SEP 10</time>
                             <h4 class="font-semibold text-sm mt-0.5 group-hover:text-blue-700 leading-snug">Revival Night</h4>
-                            <span class="inline-block mt-1 text-xs text-blue-700 font-medium">Details →</span>
+                            <span class="inline-block mt-1 text-xs text-blue-700 font-medium">Details &rarr;</span>
                         </div>
                     </a>
                     <a href="/details/3" class="block bg-slate-50 rounded-2xl overflow-hidden hover:shadow-md transition group">
@@ -324,7 +335,7 @@
                         <div class="p-3">
                             <time class="text-xs text-blue-700 font-semibold">OCT 05</time>
                             <h4 class="font-semibold text-sm mt-0.5 group-hover:text-blue-700 leading-snug">Community Outreach</h4>
-                            <span class="inline-block mt-1 text-xs text-blue-700 font-medium">Details →</span>
+                            <span class="inline-block mt-1 text-xs text-blue-700 font-medium">Details &rarr;</span>
                         </div>
                     </a>
                     <a href="/details/4" class="block bg-slate-50 rounded-2xl overflow-hidden hover:shadow-md transition group">
@@ -332,12 +343,12 @@
                         <div class="p-3">
                             <time class="text-xs text-blue-700 font-semibold">NOV 02</time>
                             <h4 class="font-semibold text-sm mt-0.5 group-hover:text-blue-700 leading-snug">Women's Retreat</h4>
-                            <span class="inline-block mt-1 text-xs text-blue-700 font-medium">Details →</span>
+                            <span class="inline-block mt-1 text-xs text-blue-700 font-medium">Details &rarr;</span>
                         </div>
                     </a>
                 </div>
                 <div class="mt-4 text-right">
-                    <a href="/events" class="text-sm text-blue-700 font-medium hover:underline">See all events →</a>
+                    <a href="/events" class="text-sm text-blue-700 font-medium hover:underline">See all events &rarr;</a>
                 </div>
             </div>
 
@@ -355,109 +366,116 @@
         </div>
     </aside>
 
-</div><!-- end flex layout -->
+</div>
 
 <script>
-    const locations = [
-        {
-            badge: 'Main Campus',
-            title: '123 Grace Avenue',
-            address: 'City Center, Abuja, Nigeria.',
-            desc: 'Our main campus is home to our Sunday services, midweek Bible study, and Friday prayer meetings. All are welcome — come as you are.',
-            mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.094!2d7.4914!3d9.0579!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOcKwMDMnMjguNCJOIDfCsDI5JzI5LjAiRQ!5e0!3m2!1sen!2sng!4v1',
-            directions: 'https://maps.google.com/?q=9.0579,7.4914'
-        },
-        {
-            badge: 'Eastside Campus',
-            title: 'Eastside Fellowship Hall',
-            address: 'East District, Abuja, Nigeria.',
-            desc: 'Our Eastside campus serves the eastern communities with Sunday worship and a midweek youth programme for teens and young adults.',
-            mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.094!2d7.5514!3d9.0679!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOcKwMDQnMDQuNCJOIDfCsDMzJzA1LjAiRQ!5e0!3m2!1sen!2sng!4v1',
-            directions: 'https://maps.google.com/?q=9.0679,7.5514'
-        },
-        {
-            badge: 'North Campus',
-            title: 'North Fellowship Centre',
-            address: 'North Park, Abuja, Nigeria.',
-            desc: 'The North campus hosts a thriving children's ministry, couples fellowship, and our flagship Friday night prayer service.',
-            mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.094!2d7.4714!3d9.1079!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOcKwMDYnMjguNCJOIDfCsDI4JzE3LjAiRQ!5e0!3m2!1sen!2sng!4v1',
-            directions: 'https://maps.google.com/?q=9.1079,7.4714'
-        },
-        {
-            badge: 'Riverside Venue',
-            title: 'Riverside Worship Centre',
-            address: 'Riverside, Abuja, Nigeria.',
-            desc: 'Our newest campus, Riverside serves the southern riverside communities with Sunday worship, outreach ministries, and community dinners.',
-            mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.094!2d7.4414!3d9.0279!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOcKwMDEnNDAuNCJOIDfCsDI2JzI5LjAiRQ!5e0!3m2!1sen!2sng!4v1',
-            directions: 'https://maps.google.com/?q=9.0279,7.4414'
-        }
-    ];
-
-    let locIndex = 0;
-
-    const locBadge      = document.getElementById('locBadge');
-    const locTitle      = document.getElementById('locTitle');
-    const locAddress    = document.getElementById('locAddress');
-    const locDesc       = document.getElementById('locDesc');
-    const locMapContainer = document.getElementById('locMapContainer');
-    const locDirections = document.getElementById('locDirections');
-    const locCounter    = document.getElementById('locCounter');
-    const locDots       = document.getElementById('locDots');
-
-    // ensure iframe exists inside locMapContainer
-    let locMap = document.getElementById('locMap');
-    if (!locMap) {
-        locMap = document.createElement('iframe');
-        locMap.id = 'locMap';
-        locMap.className = 'absolute inset-0 w-full h-full border-0';
-        locMap.loading = 'lazy';
-        locMap.referrerPolicy = 'no-referrer-when-downgrade';
-        locMapContainer.appendChild(locMap);
+const locations = [
+    {
+        badge: 'Headquarters',
+        title: '123 Grace Avenue',
+        address: 'City Center, Abuja, Nigeria.',
+        desc: 'Our main campus is home to our Sunday services, midweek Bible study, and Friday prayer meetings. All are welcome.',
+        mapSrc: 'https://maps.google.com/maps?q=9.0579,7.4914&z=15&output=embed',
+        directions: 'https://maps.google.com/?q=9.0579,7.4914'
+    },
+    {
+        badge: 'Zone 1',
+        title: 'Eastside Fellowship Hall',
+        address: 'East District, Abuja, Nigeria.',
+        desc: 'Our Eastside campus serves the eastern communities with Sunday worship and a midweek youth programme for teens and young adults.',
+        mapSrc: 'https://maps.google.com/maps?q=9.0679,7.5514&z=15&output=embed',
+        directions: 'https://maps.google.com/?q=9.0679,7.5514'
+    },
+    {
+        badge: 'Zone 2',
+        title: 'North Fellowship Centre',
+        address: 'North Park, Abuja, Nigeria.',
+        desc: 'The North campus hosts a thriving children\'s ministry, couples fellowship, and our flagship Friday night prayer service.',
+        mapSrc: 'https://maps.google.com/maps?q=9.1079,7.4714&z=15&output=embed',
+        directions: 'https://maps.google.com/?q=9.1079,7.4714'
+    },
+    {
+        badge: 'Zone 3',
+        title: 'Riverside Worship Centre',
+        address: 'Riverside, Abuja, Nigeria.',
+        desc: 'Our newest campus serves the southern riverside communities with Sunday worship, outreach ministries, and community dinners.',
+        mapSrc: 'https://maps.google.com/maps?q=9.0279,7.4414&z=15&output=embed',
+        directions: 'https://maps.google.com/?q=9.0279,7.4414'
     }
+];
 
-    // Build dots
-    locations.forEach((_, i) => {
-        const dot = document.createElement('button');
-        dot.className = 'w-2 h-2 rounded-full transition ' + (i === 0 ? 'bg-blue-700' : 'bg-slate-300');
-        dot.addEventListener('click', () => { locIndex = i; renderLoc(); });
-        locDots.appendChild(dot);
-    });
+let locIndex = 0;
 
-    function renderLoc() {
-        const loc = locations[locIndex];
-        locBadge.textContent     = loc.badge;
-        locTitle.textContent     = loc.title;
-        locAddress.textContent   = loc.address;
-        locDesc.textContent      = loc.desc;
-        locMap.src                = loc.mapSrc;
-        locCounter.textContent   = `${locIndex + 1} / ${locations.length}`;
+const elBadge     = document.getElementById('locBadge');
+const elTitle     = document.getElementById('locTitle');
+const elAddress   = document.getElementById('locAddress');
+const elDesc      = document.getElementById('locDesc');
+const elContainer = document.getElementById('locMapContainer');
+const elDirections= document.getElementById('locDirections');
+const elCounter   = document.getElementById('locCounter');
+const elDots      = document.getElementById('locDots');
+const btnPrev     = document.getElementById('locPrev');
+const btnNext     = document.getElementById('locNext');
 
-        // Rebuild iframe from scratch so the browser actually loads the new map
-        locMapContainer.innerHTML = '';
-        const iframe = document.createElement('iframe');
-        iframe.className = 'absolute inset-0 w-full h-full border-0';
-        iframe.src = loc.mapSrc;
-        iframe.allowFullscreen = true;
-        iframe.loading = 'lazy';
-        iframe.referrerPolicy = 'no-referrer-when-downgrade';
-        locMapContainer.appendChild(iframe);
-
-        // Update dots
-        Array.from(locDots.children).forEach((dot, i) => {
-            dot.className = 'w-2 h-2 rounded-full transition ' + (i === locIndex ? 'bg-blue-700' : 'bg-slate-300');
-        });
-    }
-
-    document.getElementById('locPrev').addEventListener('click', () => {
-        locIndex = (locIndex - 1 + locations.length) % locations.length;
+// Build dot indicators
+locations.forEach(function(_, i) {
+    var dot = document.createElement('button');
+    dot.type = 'button';
+    dot.setAttribute('data-i', i);
+    dot.className = 'w-3 h-3 rounded-full transition-all ' + (i === 0 ? 'bg-blue-700 scale-110' : 'bg-slate-300');
+    dot.addEventListener('click', function() {
+        locIndex = parseInt(this.getAttribute('data-i'));
         renderLoc();
     });
-    document.getElementById('locNext').addEventListener('click', () => {
-        locIndex = (locIndex + 1) % locations.length;
-        renderLoc();
-    });
+    elDots.appendChild(dot);
+});
 
+function renderLoc() {
+    var loc = locations[locIndex];
+
+    // Update text fields
+    elBadge.textContent    = loc.badge;
+    elTitle.textContent    = loc.title;
+    elAddress.textContent  = loc.address;
+    elDesc.textContent     = loc.desc;
+    elDirections.href      = loc.directions;
+    elCounter.textContent  = (locIndex + 1) + ' / ' + locations.length;
+
+    // Rebuild iframe completely — only way to force map reload
+    elContainer.innerHTML = '';
+    var iframe = document.createElement('iframe');
+    iframe.setAttribute('src', loc.mapSrc);
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('loading', 'lazy');
+    iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+    iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+    elContainer.appendChild(iframe);
+
+    // Update dots
+    Array.from(elDots.children).forEach(function(dot, i) {
+        dot.className = 'w-3 h-3 rounded-full transition-all ' + (i === locIndex ? 'bg-blue-700 scale-110' : 'bg-slate-300');
+    });
+}
+
+btnPrev.addEventListener('click', function() {
+    locIndex = (locIndex - 1 + locations.length) % locations.length;
     renderLoc();
+});
+
+btnNext.addEventListener('click', function() {
+    locIndex = (locIndex + 1) % locations.length;
+    renderLoc();
+});
+
+// Keyboard support
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft') { locIndex = (locIndex - 1 + locations.length) % locations.length; renderLoc(); }
+    if (e.key === 'ArrowRight') { locIndex = (locIndex + 1) % locations.length; renderLoc(); }
+});
+
+// Init
+renderLoc();
 </script>
 
 </body>

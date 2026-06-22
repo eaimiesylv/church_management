@@ -19,7 +19,7 @@
             }
         </style>
     </head>
-    <body class="bg-white text-slate-800 antialiased">
+    <body class="bg-white text-slate-800 antialiased flex flex-col min-h-screen">
 
 <!-- ===== NAVIGATION ===== -->
 <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
@@ -50,7 +50,6 @@
         <!-- Desktop Nav Links -->
         <div class="hidden md:flex gap-6 items-center">
             <a href="#about"       class="hover:text-blue-700 text-sm font-medium">About</a>
-            <a href="#testimonies" class="hover:text-blue-700 text-sm font-medium">Testimonies</a>
             <a href="#events"      class="hover:text-blue-700 text-sm font-medium">Events</a>
             <a href="#gallery"     class="hover:text-blue-700 text-sm font-medium">Gallery</a>
             <a href="#contact"     class="hover:text-blue-700 text-sm font-medium">Contact Us</a>
@@ -117,7 +116,7 @@
 </div>
 
 <!-- ===== MAIN LAYOUT ===== -->
-<div class="w-full max-w-[1400px] mx-auto px-4 md:px-6 py-12 md:py-16 flex flex-col lg:flex-row items-stretch gap-10" style="min-height:60vh;">
+<div class="w-full max-w-[1400px] mx-auto px-4 md:px-6 py-12 md:py-16 flex flex-col lg:flex-row items-stretch gap-10 flex-1">
 
     <!-- ===== MAIN CONTENT 3/5 ===== -->
     <main class="w-full lg:w-3/5 space-y-16 md:space-y-24 h-full">
@@ -241,9 +240,6 @@
             </div>
         </section>
 
-        <footer class="text-center text-sm text-slate-500 py-12">
-            &copy; {{ date('Y') }} {{ config('app.name', 'GOSPEL LIBERATION') }}
-        </footer>
     </main>
 
     <!-- ===== SIDEBAR 2/5 ===== -->

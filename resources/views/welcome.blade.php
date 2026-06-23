@@ -21,64 +21,7 @@
     </head>
     <body class="bg-white text-slate-800 antialiased flex flex-col min-h-screen">
 
-<!-- ===== NAVIGATION ===== -->
-<nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
-    <div class="w-full max-w-[1400px] mx-auto px-4 py-3 flex items-center justify-between">
-
-        <!-- Logo + Name -->
-        <div class="flex items-center gap-3 flex-shrink-0">
-            @if (file_exists(public_path('logo.jpg')))
-                <a href="{{ url('/') }}" class="block">
-                    <img src="{{ asset('logo.jpg') }}" alt="{{ config('app.name') }} logo" class="h-10 w-auto">
-                </a>
-            @endif
-            <div class="flex flex-col leading-none">
-                <a href="{{ url('/') }}" class="font-bold text-lg md:text-2xl text-blue-900">{{ config('app.name', 'GOSPEL LIBERATION') }}</a>
-                <span class="text-xs text-slate-500 hidden sm:block">DIVINE APOSTOLIC ASSEMBLY INTERNATIONAL</span>
-            </div>
-        </div>
-
-        <!-- Hamburger Button (mobile only) -->
-        <button id="menuToggle" type="button"
-            class="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg border border-slate-200 gap-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            aria-label="Toggle menu" aria-expanded="false">
-            <span class="block w-5 h-0.5 bg-slate-700 transition-all duration-300" id="bar1"></span>
-            <span class="block w-5 h-0.5 bg-slate-700 transition-all duration-300" id="bar2"></span>
-            <span class="block w-5 h-0.5 bg-slate-700 transition-all duration-300" id="bar3"></span>
-        </button>
-
-        <!-- Desktop Nav Links -->
-        <div class="hidden md:flex gap-6 items-center">
-            <a href="#about"       class="hover:text-blue-700 text-sm font-medium">About</a>
-            <a href="#events"      class="hover:text-blue-700 text-sm font-medium">Events</a>
-            <a href="#gallery"     class="hover:text-blue-700 text-sm font-medium">Gallery</a>
-            <a href="#contact"     class="hover:text-blue-700 text-sm font-medium">Contact Us</a>
-            <a href="#location"    class="hover:text-blue-700 text-sm font-medium">Church Branches</a>
-        </div>
-
-        <!-- Desktop Auth Buttons -->
-        <div class="hidden md:flex gap-3">
-            <a href="{{ route('login') }}"    class="px-5 py-2 border border-slate-300 rounded-lg text-sm font-medium hover:border-blue-500 hover:text-blue-700 transition">Login</a>
-            <a href="{{ route('register') }}" class="px-5 py-2 bg-blue-900 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition">Join Us</a>
-        </div>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="md:hidden hidden border-t border-slate-100 bg-white">
-        <div class="flex flex-col px-4 py-4 gap-1">
-            <a href="#about"       class="py-2.5 px-3 rounded-lg hover:bg-slate-50 hover:text-blue-700 text-sm font-medium transition" onclick="closeMobileMenu()">About</a>
-            <a href="#testimonies" class="py-2.5 px-3 rounded-lg hover:bg-slate-50 hover:text-blue-700 text-sm font-medium transition" onclick="closeMobileMenu()">Testimonies</a>
-            <a href="#events"      class="py-2.5 px-3 rounded-lg hover:bg-slate-50 hover:text-blue-700 text-sm font-medium transition" onclick="closeMobileMenu()">Events</a>
-            <a href="#gallery"     class="py-2.5 px-3 rounded-lg hover:bg-slate-50 hover:text-blue-700 text-sm font-medium transition" onclick="closeMobileMenu()">Gallery</a>
-            <a href="#contact"     class="py-2.5 px-3 rounded-lg hover:bg-slate-50 hover:text-blue-700 text-sm font-medium transition" onclick="closeMobileMenu()">Contact Us</a>
-            <a href="#location"    class="py-2.5 px-3 rounded-lg hover:bg-slate-50 hover:text-blue-700 text-sm font-medium transition" onclick="closeMobileMenu()">Church Branches</a>
-            <div class="border-t border-slate-100 mt-3 pt-3 flex flex-col gap-2">
-                <a href="{{ route('login') }}"    class="w-full text-center py-2.5 border border-slate-300 rounded-lg text-sm font-medium hover:border-blue-500 hover:text-blue-700 transition">Login</a>
-                <a href="{{ route('register') }}" class="w-full text-center py-2.5 bg-blue-900 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition">Join Us</a>
-            </div>
-        </div>
-    </div>
-</nav>
+@include('partials.header')
 
 <!-- ===== HERO — TRUE FULL WIDTH ===== -->
 
@@ -100,18 +43,7 @@
         background-position: center;
         background-repeat: no-repeat;
     ">
-        <!-- Dark overlay so text stays readable -->
-        <div style="position:absolute;inset:0;background:rgba(0,0,0,0.4);"></div>
-        <!-- CTA buttons -->
-        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;text-align:center;padding:0 16px;">
-            <span class="bg-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full text-white text-xs sm:text-sm md:text-base font-medium">
-                Welcome To {{ config('app.name', 'GOSPEL LIBERATION') }}
-            </span>
-            <div class="mt-4 md:mt-6 flex flex-wrap justify-center gap-2 md:gap-4">
-                <a href="#about"  class="bg-blue-600 text-white px-5 sm:px-8 py-2.5 sm:py-4 rounded-xl font-semibold transition transform hover:-translate-y-1 text-xs sm:text-sm md:text-base shadow-lg">Learn More</a>
-                <a href="#events" class="bg-white text-slate-900 px-5 sm:px-8 py-2.5 sm:py-4 rounded-xl font-semibold transition transform hover:-translate-y-1 text-xs sm:text-sm md:text-base shadow-lg">Upcoming Events</a>
-            </div>
-        </div>
+        
     </section>
 </div>
 
@@ -301,6 +233,11 @@
     </aside>
 
 </div>
+
+    <!-- Footer -->
+    <footer class="text-center text-sm text-slate-500 py-12 mt-6">
+        &copy; {{ date('Y') }} {{ config('app.name', 'GOSPEL LIBERATION') }}
+    </footer>
 
 <!-- ===== SCRIPTS ===== -->
 <script>

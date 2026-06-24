@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('phone', 20)->nullable();
             $table->string('email')->nullable();
             $table->string('lead_pastor')->nullable();
-            $table->unsignedInteger('capacity')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->softDeletes();

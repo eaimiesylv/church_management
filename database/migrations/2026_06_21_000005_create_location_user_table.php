@@ -13,7 +13,6 @@ return new class extends Migration
             $table->foreignId('location_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->boolean('is_primary')->default(false);
-            $table->date('joined_date')->nullable();
             $table->timestamps();
             $table->unique(['location_id', 'user_id']);
         });

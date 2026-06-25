@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('hierarchies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('hierarchy_type_id')->constrained()->cascadeOnDelete();
+            $table->string('image')->nullable();
             $table->string('name');
             // $table->string('code')->nullable()->unique();
             // $table->text('description')->nullable();

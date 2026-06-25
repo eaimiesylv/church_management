@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
+            $table->string('image')->nullable();
             $table->foreignId('location_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('leader_id')->nullable()->constrained('users')->nullOnDelete();
             $table->string('type')->nullable();

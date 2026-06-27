@@ -8,27 +8,18 @@
         <form method="POST" action="{{ route('register.store') }}" class="flex flex-col gap-6">
             @csrf
             <!-- Name -->
-            <flux:input
-                name="name"
-                :label="__('Name')"
-                :value="old('name')"
-                type="text"
-                required
-                autofocus
-                autocomplete="name"
-                :placeholder="__('Full name')"
-            />
+            <div>
+                <label for="name" class="block text-sm font-medium text-zinc-700">{{ __('Name') }}</label>
+                <input id="name" name="name" value="{{ old('name') }}" type="text" required autofocus autocomplete="name" placeholder="{{ __('Full name') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                @error('name') <p class="text-sm text-red-600 mt-1">{{ $message }}</p> @enderror
+            </div>
 
             <!-- Email Address -->
-            <flux:input
-                name="email"
-                :label="__('Email address')"
-                :value="old('email')"
-                type="email"
-                required
-                autocomplete="email"
-                placeholder="email@example.com"
-            />
+            <div>
+                <label for="email" class="block text-sm font-medium text-zinc-700">{{ __('Email address') }}</label>
+                <input id="email" name="email" value="{{ old('email') }}" type="email" required autocomplete="email" placeholder="email@example.com" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                @error('email') <p class="text-sm text-red-600 mt-1">{{ $message }}</p> @enderror
+            </div>
 
             {{-- extra profile selects: country, state, lga, service unit, cell, position, hierarchy --}}
             @php
@@ -43,7 +34,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-sm font-medium text-zinc-700">{{ __('Country') }}</label>
+                    <label class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">{{ __('Country') }}</label>
                     <select name="country_id" class="mt-1 block w-full rounded-md border-gray-300">
                         <option value="">{{ __('Select country') }}</option>
                         @foreach($countries as $c)
@@ -53,7 +44,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-zinc-700">{{ __('State') }}</label>
+                    <label class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">{{ __('State') }}</label>
                     <select name="state_of_origin_id" class="mt-1 block w-full rounded-md border-gray-300">
                         <option value="">{{ __('Select state') }}</option>
                         @foreach($states as $s)
@@ -63,7 +54,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-zinc-700">{{ __('LGA') }}</label>
+                    <label class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">{{ __('LGA') }}</label>
                     <select name="lga_id" class="mt-1 block w-full rounded-md border-gray-300">
                         <option value="">{{ __('Select LGA') }}</option>
                         @foreach($lgas as $l)
@@ -73,7 +64,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-zinc-700">{{ __('Service unit') }}</label>
+                    <label class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">{{ __('Service unit') }}</label>
                     <select name="service_unit_id" class="mt-1 block w-full rounded-md border-gray-300">
                         <option value="">{{ __('Select service unit') }}</option>
                         @foreach($serviceUnits as $su)
@@ -83,7 +74,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-zinc-700">{{ __('Cell') }}</label>
+                    <label class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">{{ __('Cell') }}</label>
                     <select name="cell_id" class="mt-1 block w-full rounded-md border-gray-300">
                         <option value="">{{ __('Select cell') }}</option>
                         @foreach($cells as $cell)
@@ -93,7 +84,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-zinc-700">{{ __('Position') }}</label>
+                    <label class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">{{ __('Position') }}</label>
                     <select name="position_id" class="mt-1 block w-full rounded-md border-gray-300">
                         <option value="">{{ __('Select position') }}</option>
                         @foreach($positions as $p)
@@ -103,7 +94,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-zinc-700">{{ __('Hierarchy') }}</label>
+                    <label class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">{{ __('Hierarchy') }}</label>
                     <select name="hierarchy_id" class="mt-1 block w-full rounded-md border-gray-300">
                         <option value="">{{ __('Select hierarchy') }}</option>
                         @foreach($hierarchies as $h)
@@ -114,39 +105,29 @@
             </div>
 
             <!-- Password -->
-            <flux:input
-                name="password"
-                :label="__('Password')"
-                type="password"
-                required
-                autocomplete="new-password"
-                :placeholder="__('Password')"
-                passwordrules="{{ \Illuminate\Validation\Rules\Password::defaults()->toPasswordRulesString() }}"
-                viewable
-            />
+            <div>
+                <label for="password" class="block text-sm font-medium text-zinc-700">{{ __('Password') }}</label>
+                <input id="password" name="password" type="password" required autocomplete="new-password" placeholder="{{ __('Password') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                @error('password') <p class="text-sm text-red-600 mt-1">{{ $message }}</p> @enderror
+            </div>
 
             <!-- Confirm Password -->
-            <flux:input
-                name="password_confirmation"
-                :label="__('Confirm password')"
-                type="password"
-                required
-                autocomplete="new-password"
-                :placeholder="__('Confirm password')"
-                passwordrules="{{ \Illuminate\Validation\Rules\Password::defaults()->toPasswordRulesString() }}"
-                viewable
-            />
+            <div>
+                <label for="password_confirmation" class="block text-sm font-medium text-zinc-700">{{ __('Confirm password') }}</label>
+                <input id="password_confirmation" name="password_confirmation" type="password" required autocomplete="new-password" placeholder="{{ __('Confirm password') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                @error('password_confirmation') <p class="text-sm text-red-600 mt-1">{{ $message }}</p> @enderror
+            </div>
 
             <div class="flex items-center justify-end">
-                <flux:button type="submit" variant="primary" class="w-full" data-test="register-user-button">
+                <button type="submit" class="w-full inline-flex items-center justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none" data-test="register-user-button">
                     {{ __('Create account') }}
-                </flux:button>
+                </button>
             </div>
         </form>
 
         <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-600 dark:text-zinc-400">
             <span>{{ __('Already have an account?') }}</span>
-            <flux:link :href="route('login')" wire:navigate>{{ __('Log in') }}</flux:link>
+            <a href="{{ route('login') }}" class="text-indigo-600 hover:underline">{{ __('Log in') }}</a>
         </div>
     </div>
 </x-layouts::auth>

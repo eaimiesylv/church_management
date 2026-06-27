@@ -56,7 +56,16 @@
         @apply grid gap-2;
     }
 
+    /* Class equivalents for removing Flux attributes from markup */
+    .flux-field:not(ui-radio, ui-checkbox) {
+        @apply grid gap-2;
+    }
+
     [data-flux-label] {
+        @apply !mb-0 !leading-tight;
+    }
+
+    .flux-label {
         @apply !mb-0 !leading-tight;
     }
 
@@ -64,6 +73,13 @@
     input:focus[data-flux-control],
     textarea:focus[data-flux-control],
     select:focus[data-flux-control] {
+        @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+    }
+
+    /* Focus styles for elements using class-based markup */
+    input.flux-control:focus,
+    textarea.flux-control:focus,
+    select.flux-control:focus {
         @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
     }
 }

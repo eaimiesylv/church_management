@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    //eg. state, region, district
     public function up(): void
     {
         Schema::create('hierarchies', function (Blueprint $table) {

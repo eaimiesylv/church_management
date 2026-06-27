@@ -12,4 +12,4 @@
 @fonts
 
 @vite(['resources/css/app.css', 'resources/js/app.js'])
-@fluxAppearance
+<!-- Dark mode disabled — using default light theme -->

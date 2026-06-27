@@ -22,12 +22,8 @@
             </div>
         </div>
 
-        @persist('toast')
-            <flux:toast.group>
-                <flux:toast />
-            </flux:toast.group>
-        @endpersist
+        {{-- Toasts placeholder (Flux removed). Use Livewire / session flashes instead. --}}
 
-        @fluxScripts
+        @livewireScripts
     </body>
 </html>

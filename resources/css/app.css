@@ -1,5 +1,7 @@
 @import 'tailwindcss';
-@import '../../vendor/livewire/flux/dist/flux.css';
+/* Removed import of flux.css — package `livewire/flux` not installed.
+    If you need it, install with: `composer require livewire/flux`
+    or restore the correct path under `vendor/livewire/flux/dist/flux.css`. */
 
 /* 1. Fixed Glob Pattern: Recursively scans all subfolders in resources/views */
 @source '../views/**/*.blade.php'; 
